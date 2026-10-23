@@ -103,6 +103,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
+            /* ВАШ КОВЕР */
             background: url('images/bg-carpet.jpg') no-repeat center center/cover;
         }
 
@@ -285,7 +286,6 @@
             gap: 30px;
         }
 
-        /* КАРТОЧКА УСЛУГИ */
         .service-card-ref {
             display: flex;
             flex-direction: column;
@@ -360,7 +360,6 @@
             font-weight: 500;
         }
 
-        /* ФОТО ДЛЯ КАРТОЧЕК */
         .bg-haircut { background-image: url('https://i.pinimg.com/736x/e3/4c/97/e34c97f977ee3c9d552a3ac5558990cb.jpg'); }
         .bg-kids { background-image: url('https://i.pinimg.com/736x/f2/85/26/f28526c6aaf44377b491535636c85b10.jpg'); }
         .bg-beard { background-image: url('https://i.pinimg.com/736x/c6/19/e2/c619e240773cd16f5f7eba9eefcde902.jpg'); }
@@ -453,7 +452,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px); /* Легкое размытие фона */
+            backdrop-filter: blur(5px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -522,7 +521,6 @@
             letter-spacing: 1px;
         }
 
-        /* Чекбоксы услуг */
         .checkbox-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -551,7 +549,6 @@
             height: 16px;
         }
 
-        /* Инпуты */
         .form-control {
             width: 100%;
             padding: 12px 15px;
@@ -569,7 +566,6 @@
             border-color: var(--accent-red);
         }
 
-        /* Кнопка отправки */
         .btn-submit {
             width: 100%;
             margin-top: 10px;
@@ -661,7 +657,7 @@
                 <a href="#about">О нас</a>
             </nav>
 
-            <!-- Кнопка Записаться в шапке -->
+            <!-- Кнопка Записаться в шапке (открывает окно) -->
             <button onclick="openModal()" class="btn btn-outline header-btn">Записаться</button>
         </div>
     </header>
@@ -672,7 +668,7 @@
             <h1>На высоте</h1>
             <p>NUR — для тех, кто ценит простоту и качество. Профессиональный уход в атмосфере мужского клуба.</p>
             <div class="hero-buttons">
-                <!-- Кнопка Записаться на главном экране -->
+                <!-- Кнопка Записаться на главном экране (открывает окно) -->
                 <button onclick="openModal()" class="btn btn-primary">Записаться онлайн</button>
                 <a href="#pricing" class="btn btn-outline">Посмотреть цены</a>
             </div>
@@ -839,6 +835,7 @@
             </div>
             
             <div class="footer-contacts">
+                <!-- Ссылка на Telegram осталась ТОЛЬКО здесь -->
                 <a href="https://t.me/NUR_Ab1" target="_blank">Написать в Telegram</a>
             </div>
             
@@ -848,17 +845,15 @@
 
 
     <!-- ========================================= -->
-    <!-- МОДАЛЬНОЕ ОКНО ЗАПИСИ (СКРЫТО ПО УМОЛЧАНИЮ) -->
+    <!-- МОДАЛЬНОЕ ОКНО ЗАПИСИ -->
     <!-- ========================================= -->
     <div class="modal-overlay" id="bookingModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <h2>Запись в NUR</h2>
             
-            <!-- Форма отправляет данные (в будущем вы сможете настроить отправку в Telegram или на почту) -->
             <form onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами для подтверждения.'); closeModal();">
                 
-                <!-- Выбор услуг -->
                 <div class="form-group">
                     <label>Выберите услуги</label>
                     <div class="checkbox-group">
@@ -880,16 +875,13 @@
                     </div>
                 </div>
 
-                <!-- Дата и время -->
                 <div class="form-group">
                     <label>Желаемая дата и время</label>
                     <input type="datetime-local" class="form-control" name="datetime" required>
                 </div>
 
-                <!-- Телефон с маской -->
                 <div class="form-group">
                     <label>Ваш номер телефона</label>
-                    <!-- Поле с id для скрипта маски -->
                     <input type="tel" id="phoneInput" class="form-control" placeholder="+7 (900) 000-00-00" required>
                 </div>
 
@@ -899,7 +891,7 @@
     </div>
 
     <!-- ========================================= -->
-    <!-- СКРИПТЫ (МОДАЛКА И МАСКА ТЕЛЕФОНА) -->
+    <!-- СКРИПТЫ -->
     <!-- ========================================= -->
     <script>
         // 1. Открытие и закрытие модального окна
@@ -907,17 +899,14 @@
 
         function openModal() {
             modal.classList.add('active');
-            // Блокируем прокрутку сайта, пока открыто окно
             document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
             modal.classList.remove('active');
-            // Возвращаем прокрутку
             document.body.style.overflow = ''; 
         }
 
-        // Закрытие при клике на темный фон (мимо окна)
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 closeModal();
@@ -928,11 +917,10 @@
         const phoneInput = document.getElementById('phoneInput');
 
         phoneInput.addEventListener('input', function (e) {
-            let input = e.target.value.replace(/\D/g, ''); // Удаляем все не-цифры
+            let input = e.target.value.replace(/\D/g, ''); 
             let formattedInput = '';
 
             if (input.length > 0) {
-                // Если первая цифра не 7, принудительно ставим 7 (для России)
                 if (input[0] !== '7') {
                     input = '7' + input;
                 }
@@ -954,7 +942,6 @@
             e.target.value = formattedInput;
         });
         
-        // Запрет ввода букв (оставляем только цифры и спецсимволы)
         phoneInput.addEventListener('keypress', function(e) {
             if (!/[0-9]/.test(e.key)) {
                 e.preventDefault();
