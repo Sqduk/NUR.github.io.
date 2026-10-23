@@ -103,7 +103,6 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            /* ВАШ КОВЕР */
             background: url('images/bg-carpet.jpg') no-repeat center center/cover;
         }
 
@@ -521,9 +520,10 @@
             letter-spacing: 1px;
         }
 
+        /* Обновленная сетка для 7 услуг */
         .checkbox-group {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr; /* 2 колонки */
             gap: 10px;
         }
 
@@ -532,7 +532,7 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* Чуть меньше шрифт, чтобы влезло */
             padding: 10px;
             border: 1px solid #333;
             border-radius: 6px;
@@ -547,6 +547,12 @@
             accent-color: var(--accent-red);
             width: 16px;
             height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Последний элемент (7-й) на всю ширину, чтобы сетка не ломалась */
+        .checkbox-label.full-width {
+            grid-column: 1 / -1;
         }
 
         .form-control {
@@ -657,7 +663,6 @@
                 <a href="#about">О нас</a>
             </nav>
 
-            <!-- Кнопка Записаться в шапке (открывает окно) -->
             <button onclick="openModal()" class="btn btn-outline header-btn">Записаться</button>
         </div>
     </header>
@@ -668,7 +673,6 @@
             <h1>На высоте</h1>
             <p>NUR — для тех, кто ценит простоту и качество. Профессиональный уход в атмосфере мужского клуба.</p>
             <div class="hero-buttons">
-                <!-- Кнопка Записаться на главном экране (открывает окно) -->
                 <button onclick="openModal()" class="btn btn-primary">Записаться онлайн</button>
                 <a href="#pricing" class="btn btn-outline">Посмотреть цены</a>
             </div>
@@ -835,7 +839,6 @@
             </div>
             
             <div class="footer-contacts">
-                <!-- Ссылка на Telegram осталась ТОЛЬКО здесь -->
                 <a href="https://t.me/NUR_Ab1" target="_blank">Написать в Telegram</a>
             </div>
             
@@ -845,7 +848,7 @@
 
 
     <!-- ========================================= -->
-    <!-- МОДАЛЬНОЕ ОКНО ЗАПИСИ -->
+    <!-- МОДАЛЬНОЕ ОКНО ЗАПИСИ (7 УСЛУГ) -->
     <!-- ========================================= -->
     <div class="modal-overlay" id="bookingModal">
         <div class="modal-content">
@@ -858,19 +861,26 @@
                     <label>Выберите услуги</label>
                     <div class="checkbox-group">
                         <label class="checkbox-label">
-                            <input type="checkbox" name="service" value="Мужская стрижка"> Стрижка
+                            <input type="checkbox" name="service" value="Мужская стрижка"> Мужская стрижка
                         </label>
                         <label class="checkbox-label">
-                            <input type="checkbox" name="service" value="Оформление бороды"> Борода
+                            <input type="checkbox" name="service" value="Стрижка до 5 лет"> Стрижка до 5 лет
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="service" value="Оформление бороды"> Оформление бороды
                         </label>
                         <label class="checkbox-label">
                             <input type="checkbox" name="service" value="Комбо"> Комбо
                         </label>
                         <label class="checkbox-label">
-                            <input type="checkbox" name="service" value="Стрижка до 5 лет"> Детям
+                            <input type="checkbox" name="service" value="Покраска волос"> Покраска волос
                         </label>
                         <label class="checkbox-label">
-                            <input type="checkbox" name="service" value="Покраска"> Покраска
+                            <input type="checkbox" name="service" value="Тонирование бороды"> Тонирование бороды
+                        </label>
+                        <!-- 7-й пункт на всю ширину для красоты -->
+                        <label class="checkbox-label full-width">
+                            <input type="checkbox" name="service" value="Горячий воск"> Горячий воск
                         </label>
                     </div>
                 </div>
@@ -894,7 +904,6 @@
     <!-- СКРИПТЫ -->
     <!-- ========================================= -->
     <script>
-        // 1. Открытие и закрытие модального окна
         const modal = document.getElementById('bookingModal');
 
         function openModal() {
@@ -913,7 +922,6 @@
             }
         });
 
-        // 2. Маска для телефона (+7 (900) 123-45-67)
         const phoneInput = document.getElementById('phoneInput');
 
         phoneInput.addEventListener('input', function (e) {
