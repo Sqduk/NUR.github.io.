@@ -24,7 +24,7 @@
             --bg-card: #1a1a1a;
             --text-main: #f2f2f2;
             --text-muted: #a0a0a0;
-            --accent-red: #8b1c1c; /* Тот самый цвет ковра */
+            --accent-red: #8b1c1c; 
             --accent-hover: #b32424;
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
@@ -38,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* ОБЩИЕ КЛАССЫ */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -106,7 +105,7 @@
         }
 
         .nav-links {
-            display: none; /* Скрыто на мобильных */
+            display: none; 
         }
 
         .header-btn {
@@ -122,7 +121,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            /* ЗАМЕНИТЕ ССЫЛКУ НИЖЕ НА ВАШЕ ФОТО САЛОНА */
+            /* ЗАМЕНИТЕ ССЫЛКУ НИЖЕ НА ВАШЕ ОБЩЕЕ ФОТО САЛОНА */
             background: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
         }
 
@@ -133,17 +132,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 15, 15, 0.7); /* Затемнение фото */
+            background: rgba(15, 15, 15, 0.75); 
         }
 
         .hero-content {
             position: relative;
             z-index: 10;
             padding: 0 20px;
-        }
-
-        .hero-logo-mock {
-            margin-bottom: 20px;
         }
 
         .hero h1 {
@@ -248,7 +243,7 @@
             text-transform: uppercase;
         }
 
-        /* ПРАЙС-ЛИСТ (КАРТОЧКИ) */
+        /* ПРАЙС-ЛИСТ (КАРТОЧКИ С ФОТО) */
         .pricing {
             padding: 80px 0;
         }
@@ -260,42 +255,96 @@
         }
 
         .price-card {
-            background-color: var(--bg-card);
+            position: relative;
             padding: 30px;
             border-left: 4px solid var(--accent-red);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end; /* Сдвигаем текст и цену вниз */
+            overflow: hidden;
+            min-height: 180px; 
+            z-index: 1;
+        }
+
+        /* Слой с фотографией и затемнением */
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transition: transform 0.5s ease;
+        }
+
+        /* Градиентный оверлей для читаемости текста (снизу темнее) */
+        .price-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15,15,15,0.95) 0%, rgba(15,15,15,0.5) 60%, rgba(15,15,15,0.1) 100%);
+            z-index: 0;
+        }
+
+        .price-card:hover::before {
+            transform: scale(1.05); /* Легкий зум фото при наведении */
         }
 
         .price-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        }
+
+        .price-info {
+            position: relative;
+            z-index: 2;
         }
 
         .price-info h3 {
             font-size: 1.3rem;
             margin-bottom: 5px;
             font-family: var(--font-body);
-            font-weight: 500;
+            font-weight: 700;
             text-transform: uppercase;
+            color: #fff;
         }
 
         .price-info p {
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: #ccc;
         }
 
         .price-value {
+            position: relative;
+            z-index: 2;
             font-size: 1.8rem;
             font-family: var(--font-heading);
-            color: var(--accent-red);
+            color: #fff;
             font-weight: 700;
             white-space: nowrap;
+            background-color: var(--accent-red);
+            padding: 5px 15px;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        /* О НАС / ПРЕИМУЩЕСТВА */
+        /* ВАШИ ФОТО ДЛЯ КАРТОЧЕК */
+        .bg-haircut { background-image: url('https://i.pinimg.com/736x/e3/4c/97/e34c97f977ee3c9d552a3ac5558990cb.jpg'); }
+        .bg-kids { background-image: url('https://i.pinimg.com/736x/f2/85/26/f28526c6aaf44377b491535636c85b10.jpg'); }
+        .bg-beard { background-image: url('https://i.pinimg.com/736x/c6/19/e2/c619e240773cd16f5f7eba9eefcde902.jpg'); }
+        .bg-combo { background-image: url('https://i.pinimg.com/1200x/d4/d5/8f/d4d58f31a48636c61a06e82a0a055186.jpg'); }
+        .bg-color { background-image: url('https://i.pinimg.com/1200x/00/77/c4/0077c4bea9b49308b187d0ca7592c116.jpg'); }
+        .bg-beard-color { background-image: url('https://avatars.mds.yandex.net/get-sprav-products/9495815/2a00000189db394138886e48e4b91c72f581/XXL'); }
+        .bg-wax { background-image: url('https://static.tildacdn.com/tild3838-6331-4361-a334-626661303838/RkRNOoEtg0w.jpg'); }
+
+        /* О НАС */
         .about {
             padding: 80px 0;
             background-color: var(--bg-card);
@@ -349,6 +398,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            align-items: center;
         }
 
         .footer-contacts a {
@@ -368,7 +418,7 @@
             margin-top: 20px;
         }
 
-        /* АДАПТИВ (ПЛАНШЕТЫ И ДЕСКТОП) */
+        /* АДАПТИВ */
         @media (min-width: 768px) {
             .nav-links {
                 display: flex;
@@ -406,15 +456,10 @@
             }
             .about-image {
                 flex: 1;
-                /* ЗАМЕНИТЕ ССЫЛКУ НА ФОТО РАБОТЫ */
+                /* Можете заменить эту ссылку на фото интерьера или мастера */
                 background: url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
                 height: 500px;
                 border-radius: 5px;
-            }
-            .footer-contacts {
-                flex-direction: row;
-                justify-content: center;
-                gap: 40px;
             }
         }
     </style>
@@ -425,7 +470,6 @@
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <div class="logo">
-                <!-- ТУТ БУДЕТ ВАШ ЛОГОТИП (картинка). Пока текст. -->
                 NUR
                 <span>Мужские стрижки</span>
             </div>
@@ -436,7 +480,6 @@
                 <a href="#about">О нас</a>
             </nav>
 
-            <!-- ССЫЛКА НА ВАШ ТЕЛЕГРАМ ДЛЯ ЗАПИСИ -->
             <a href="https://t.me/NUR_Ab1" target="_blank" class="btn btn-outline header-btn">Записаться</a>
         </div>
     </header>
@@ -444,7 +487,7 @@
     <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Больше<br>чем стрижки</h1>
+            <h1>На высоте</h1>
             <p>NUR — для тех, кто ценит простоту и качество. Профессиональный уход в атмосфере мужского клуба.</p>
             <div class="hero-buttons">
                 <a href="https://t.me/NUR_Ab1" target="_blank" class="btn btn-primary">Записаться онлайн</a>
@@ -481,14 +524,14 @@
         </div>
     </section>
 
-    <!-- БЛОК С ЦЕНАМИ -->
+    <!-- БЛОК С ЦЕНАМИ (С ВАШИМИ ФОТО) -->
     <section class="pricing" id="pricing">
         <div class="container">
             <h2 class="section-title">Наши услуги</h2>
             <div class="pricing-grid">
                 
                 <!-- Карточка 1 -->
-                <div class="price-card">
+                <div class="price-card bg-haircut">
                     <div class="price-info">
                         <h3>Мужская стрижка</h3>
                         <p>Классика, фейд, тенниска</p>
@@ -497,7 +540,7 @@
                 </div>
 
                 <!-- Карточка 2 -->
-                <div class="price-card">
+                <div class="price-card bg-kids">
                     <div class="price-info">
                         <h3>Стрижка до 5 лет</h3>
                         <p>Для самых маленьких</p>
@@ -506,7 +549,7 @@
                 </div>
 
                 <!-- Карточка 3 -->
-                <div class="price-card">
+                <div class="price-card bg-beard">
                     <div class="price-info">
                         <h3>Оформление бороды</h3>
                         <p>Контуры, тримминг, уход</p>
@@ -515,7 +558,7 @@
                 </div>
 
                 <!-- Карточка 4 -->
-                <div class="price-card">
+                <div class="price-card bg-combo">
                     <div class="price-info">
                         <h3>Комбо (Стрижка + Борода)</h3>
                         <p>Полный образ под ключ</p>
@@ -524,7 +567,7 @@
                 </div>
 
                 <!-- Карточка 5 -->
-                <div class="price-card">
+                <div class="price-card bg-color">
                     <div class="price-info">
                         <h3>Покраска волос</h3>
                         <p>Тонирование, камуфляж</p>
@@ -533,7 +576,7 @@
                 </div>
 
                 <!-- Карточка 6 -->
-                <div class="price-card">
+                <div class="price-card bg-beard-color">
                     <div class="price-info">
                         <h3>Тонирование бороды</h3>
                         <p>Устранение седины</p>
@@ -542,7 +585,7 @@
                 </div>
 
                 <!-- Карточка 7 -->
-                <div class="price-card">
+                <div class="price-card bg-wax">
                     <div class="price-info">
                         <h3>Горячий воск</h3>
                         <p>Удаление волос (зона)</p>
@@ -568,7 +611,6 @@
                         <li>Уютная атмосфера</li>
                     </ul>
                 </div>
-                <!-- Заглушка для фото, в CSS прописано фоновое изображение -->
                 <div class="about-image"></div>
             </div>
         </div>
@@ -583,8 +625,6 @@
             </div>
             
             <div class="footer-contacts">
-                <!-- ЗАМЕНИТЕ НА ВАШ АДРЕС И ТЕЛЕФОН -->
-                <a href="tel:+70000000000">+7 (000) 000-00-00</a>
                 <a href="https://t.me/NUR_Ab1" target="_blank">Написать в Telegram</a>
             </div>
             
