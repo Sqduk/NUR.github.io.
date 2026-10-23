@@ -212,13 +212,13 @@
             position: relative;
         }
 
-        /* СТИЛИ ДЛЯ ВАШИХ ЛОКАЛЬНЫХ ИКОНОК */
+        /* СТИЛИ ДЛЯ ВАШИХ ЛОКАЛЬНЫХ ИКОНОК (ПОДОГНАНО ПОД РАЗМЕР) */
         .icon-circle img {
-            width: 100%; 
-            height: 100%;
-            object-fit: cover; 
+            width: 85%;       /* Иконка чуть меньше круга, чтобы был отступ (воздух) */
+            height: 85%;
+            object-fit: contain; /* Иконка вписывается целиком, не обрезаясь */
+            border-radius: 50%;  /* На всякий случай скругляем края картинки */
             mix-blend-mode: screen; /* Убирает черный фон картинки */
-            transform: scale(1.1); /* Немного увеличиваем */
             transition: transform 0.3s ease, filter 0.3s ease;
         }
 
@@ -231,7 +231,7 @@
         .service-circle:hover .icon-circle img {
              filter: brightness(0) invert(1); /* Делает картинку белой при наведении */
              mix-blend-mode: normal;
-             transform: scale(1);
+             transform: scale(1.05); /* Легкое увеличение при наведении */
         }
 
         .service-circle h3 {
