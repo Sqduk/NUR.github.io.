@@ -973,7 +973,6 @@
         bookingForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Собираем выбранные услуги
             const services = [];
             const checkboxes = document.querySelectorAll('input[name="service"]:checked');
             checkboxes.forEach((checkbox) => {
@@ -988,19 +987,16 @@
             const datetime = document.getElementById('datetimeInput').value;
             const phone = phoneInput.value;
 
-            // Формируем красивое сообщение
             let message = `🔥 <b>Новая заявка с сайта NUR!</b>\n\n`;
             message += `📋 <b>Услуги:</b>\n`;
             services.forEach(s => message += `— ${s}\n`);
             message += `\n📅 <b>Дата и время:</b> ${datetime.replace('T', ' ')}\n`;
             message += `📞 <b>Телефон:</b> ${phone}`;
 
-            // Меняем кнопку, чтобы показать загрузку
             const originalBtnText = submitBtn.innerText;
             submitBtn.innerText = 'Отправка...';
             submitBtn.disabled = true;
 
-            // Отправляем запрос в Telegram API
             const url = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`;
             
             fetch(url, {
@@ -1017,13 +1013,11 @@
             .then(response => response.json())
             .then(data => {
                 if (data.ok) {
-                    // Успешно отправлено
                     alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами для подтверждения.');
                     bookingForm.reset();
                     closeModal();
                 } else {
-                    // Ошибка (например, неверный токен)
-                    alert('Произошла ошибка при отправке. Пожалуйста, напишите нам в Telegram.');
+                    alert('Произошла ошибка при отправке. Проверьте настройки бота.');
                     console.error('Ошибка Telegram:', data);
                 }
             })
@@ -1032,4 +1026,11 @@
                 console.error('Ошибка:', error);
             })
             .finally(() => {
-                // Возвращаем кнопку в исход
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
+
+</body>
+</html>
