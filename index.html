@@ -263,7 +263,7 @@
 
         .services-cards-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; /* 1 колонка на телефонах */
             gap: 30px;
         }
 
@@ -315,7 +315,7 @@
 
         .price-list {
             list-style: none;
-            margin-top: auto; /* Прижимает список к низу, если текст разной длины */
+            margin-top: auto; /* Прижимает список к низу */
         }
 
         .price-list li {
@@ -480,19 +480,15 @@
             }
         }
 
+        /* 3 КОЛОНКИ НА ДЕСКТОПЕ (ДЛЯ 7 КАРТОЧЕК) */
         @media (min-width: 1024px) {
-            /* 3 колонки на десктопе для 7 карточек */
             .services-cards-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
             
             /* Центрируем 7-ю карточку (Горячий воск) */
             .service-card-ref:last-child {
-                grid-column: 2 / 3;
-                transform: translateY(10px); /* Легкий сдвиг вниз для визуального равновесия */
-            }
-            .service-card-ref:last-child:hover {
-                transform: translateY(5px);
+                grid-column: 2 / 3; /* Ставим во вторую колонку (по центру) */
             }
         }
     </style>
