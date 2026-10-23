@@ -6,7 +6,6 @@
     <title>NUR — Мужские стрижки</title>
     <meta name="description" content="NUR — барбершоп для тех, кто ценит простоту и качество. Стрижки, оформление бороды, комбо-услуги.">
     
-    <!-- Подключаем шрифты от Google: Playfair Display (для заголовков, с засечками) и Montserrat (для текста) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -21,7 +20,7 @@
 
         :root {
             --bg-dark: #0f0f0f;
-            --bg-card: #1a1a1a;
+            --bg-card: #1c1c1c;
             --text-main: #f2f2f2;
             --text-muted: #a0a0a0;
             --accent-red: #8b1c1c; 
@@ -48,24 +47,7 @@
         h1, h2, h3, .logo {
             font-family: var(--font-heading);
             font-weight: 400;
-            letter-spacing: 2px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            position: relative;
-            text-transform: uppercase;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 2px;
-            background-color: var(--accent-red);
-            margin: 15px auto 0;
+            letter-spacing: 1px;
         }
 
         a {
@@ -121,7 +103,6 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            /* ЗАМЕНИТЕ ССЫЛКУ НИЖЕ НА ВАШЕ ОБЩЕЕ ФОТО САЛОНА */
             background: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
         }
 
@@ -198,7 +179,7 @@
         /* УСЛУГИ (КРУГЛЫЕ ИКОНКИ) */
         .services-nav {
             padding: 60px 0;
-            background-color: var(--bg-card);
+            background-color: var(--bg-dark);
         }
 
         .services-grid {
@@ -220,7 +201,7 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-card);
             border: 2px solid var(--accent-red);
             display: flex;
             align-items: center;
@@ -243,106 +224,123 @@
             text-transform: uppercase;
         }
 
-        /* ПРАЙС-ЛИСТ (КАРТОЧКИ С ФОТО) */
-        .pricing {
+        /* НОВЫЙ БЛОК ПРАЙС-ЛИСТА (КАК НА РЕФЕРЕНСЕ) */
+        .pricing-section {
             padding: 80px 0;
+            background-color: var(--bg-dark);
         }
 
-        .pricing-grid {
+        .pricing-header {
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .pricing-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+
+        .pricing-title em {
+            font-style: italic;
+            color: var(--accent-red);
+        }
+
+        .pricing-note {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 300px;
+            line-height: 1.4;
+        }
+
+        .services-cards-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 30px;
         }
 
-        .price-card {
-            position: relative;
-            padding: 30px;
-            border-left: 4px solid var(--accent-red);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .service-card-ref {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end; /* Сдвигаем текст и цену вниз */
+            flex-direction: column;
+            border-radius: 12px;
             overflow: hidden;
-            min-height: 180px; 
-            z-index: 1;
+            background-color: var(--bg-card);
         }
 
-        /* Слой с фотографией и затемнением */
-        .price-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .service-image {
+            height: 250px;
             width: 100%;
-            height: 100%;
             background-size: cover;
             background-position: center;
-            z-index: -1;
             transition: transform 0.5s ease;
         }
 
-        /* Градиентный оверлей для читаемости текста (снизу темнее) */
-        .price-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(15,15,15,0.95) 0%, rgba(15,15,15,0.5) 60%, rgba(15,15,15,0.1) 100%);
-            z-index: 0;
+        .service-card-ref:hover .service-image {
+            transform: scale(1.05);
         }
 
-        .price-card:hover::before {
-            transform: scale(1.05); /* Легкий зум фото при наведении */
+        .service-content {
+            padding: 30px;
+            flex-grow: 1;
+            background-color: var(--bg-card);
+            /* Легкий градиент для объема, как на референсе */
+            background: linear-gradient(180deg, #222 0%, #1a1a1a 100%);
+            border: 1px solid #2a2a2a;
+            border-top: none;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
         }
 
-        .price-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-        }
-
-        .price-info {
-            position: relative;
-            z-index: 2;
-        }
-
-        .price-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            font-family: var(--font-body);
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #fff;
-        }
-
-        .price-info p {
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-
-        .price-value {
-            position: relative;
-            z-index: 2;
-            font-size: 1.8rem;
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
             font-family: var(--font-heading);
-            color: #fff;
-            font-weight: 700;
+        }
+
+        .price-list {
+            list-style: none;
+        }
+
+        .price-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .price-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Пунктирная линия между названием и ценой */
+        .price-list li .dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted #555;
+            margin: 0 10px;
+            position: relative;
+            top: -4px;
+        }
+
+        .price-list li .price {
             white-space: nowrap;
-            background-color: var(--accent-red);
-            padding: 5px 15px;
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* ВАШИ ФОТО ДЛЯ КАРТОЧЕК */
         .bg-haircut { background-image: url('https://i.pinimg.com/736x/e3/4c/97/e34c97f977ee3c9d552a3ac5558990cb.jpg'); }
-        .bg-kids { background-image: url('https://i.pinimg.com/736x/f2/85/26/f28526c6aaf44377b491535636c85b10.jpg'); }
         .bg-beard { background-image: url('https://i.pinimg.com/736x/c6/19/e2/c619e240773cd16f5f7eba9eefcde902.jpg'); }
         .bg-combo { background-image: url('https://i.pinimg.com/1200x/d4/d5/8f/d4d58f31a48636c61a06e82a0a055186.jpg'); }
         .bg-color { background-image: url('https://i.pinimg.com/1200x/00/77/c4/0077c4bea9b49308b187d0ca7592c116.jpg'); }
-        .bg-beard-color { background-image: url('https://avatars.mds.yandex.net/get-sprav-products/9495815/2a00000189db394138886e48e4b91c72f581/XXL'); }
-        .bg-wax { background-image: url('https://static.tildacdn.com/tild3838-6331-4361-a334-626661303838/RkRNOoEtg0w.jpg'); }
 
         /* О НАС */
         .about {
@@ -444,9 +442,18 @@
             .hero-buttons {
                 flex-direction: row;
             }
-            .pricing-grid {
+            
+            /* Сетка для карточек услуг */
+            .services-cards-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .pricing-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+
             .about-content {
                 flex-direction: row;
                 align-items: center;
@@ -456,10 +463,15 @@
             }
             .about-image {
                 flex: 1;
-                /* Можете заменить эту ссылку на фото интерьера или мастера */
                 background: url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
                 height: 500px;
                 border-radius: 5px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-cards-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
     </style>
@@ -524,73 +536,93 @@
         </div>
     </section>
 
-    <!-- БЛОК С ЦЕНАМИ (С ВАШИМИ ФОТО) -->
-    <section class="pricing" id="pricing">
+    <!-- НОВЫЙ БЛОК С ЦЕНАМИ (КАК НА РЕФЕРЕНСЕ) -->
+    <section class="pricing-section" id="pricing">
         <div class="container">
-            <h2 class="section-title">Наши услуги</h2>
-            <div class="pricing-grid">
+            
+            <div class="pricing-header">
+                <div>
+                    <p class="pricing-subtitle">Наши услуги</p>
+                    <h2 class="pricing-title">Всё для вашего <em>стиля</em></h2>
+                </div>
+                <p class="pricing-note">Актуальные цены. Точную стоимость и запись уточняйте в Telegram.</p>
+            </div>
+
+            <div class="services-cards-grid">
                 
-                <!-- Карточка 1 -->
-                <div class="price-card bg-haircut">
-                    <div class="price-info">
-                        <h3>Мужская стрижка</h3>
-                        <p>Классика, фейд, тенниска</p>
+                <!-- КАРТОЧКА 1: Стрижки -->
+                <div class="service-card-ref">
+                    <div class="service-image bg-haircut"></div>
+                    <div class="service-content">
+                        <h3>Стрижки</h3>
+                        <ul class="price-list">
+                            <li>
+                                <span>Мужская стрижка</span>
+                                <span class="dots"></span>
+                                <span class="price">750₽</span>
+                            </li>
+                            <li>
+                                <span>Стрижка до 5 лет</span>
+                                <span class="dots"></span>
+                                <span class="price">600₽</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="price-value">750₽</div>
                 </div>
 
-                <!-- Карточка 2 -->
-                <div class="price-card bg-kids">
-                    <div class="price-info">
-                        <h3>Стрижка до 5 лет</h3>
-                        <p>Для самых маленьких</p>
+                <!-- КАРТОЧКА 2: Борода -->
+                <div class="service-card-ref">
+                    <div class="service-image bg-beard"></div>
+                    <div class="service-content">
+                        <h3>Борода</h3>
+                        <ul class="price-list">
+                            <li>
+                                <span>Оформление</span>
+                                <span class="dots"></span>
+                                <span class="price">500₽</span>
+                            </li>
+                            <li>
+                                <span>Тонирование</span>
+                                <span class="dots"></span>
+                                <span class="price">500₽</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="price-value">600₽</div>
                 </div>
 
-                <!-- Карточка 3 -->
-                <div class="price-card bg-beard">
-                    <div class="price-info">
-                        <h3>Оформление бороды</h3>
-                        <p>Контуры, тримминг, уход</p>
+                <!-- КАРТОЧКА 3: Комбо -->
+                <div class="service-card-ref">
+                    <div class="service-image bg-combo"></div>
+                    <div class="service-content">
+                        <h3>Комбо</h3>
+                        <ul class="price-list">
+                            <li>
+                                <span>Стрижка + Борода</span>
+                                <span class="dots"></span>
+                                <span class="price">1200₽</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="price-value">500₽</div>
                 </div>
 
-                <!-- Карточка 4 -->
-                <div class="price-card bg-combo">
-                    <div class="price-info">
-                        <h3>Комбо (Стрижка + Борода)</h3>
-                        <p>Полный образ под ключ</p>
+                <!-- КАРТОЧКА 4: Доп. услуги -->
+                <div class="service-card-ref">
+                    <div class="service-image bg-color"></div>
+                    <div class="service-content">
+                        <h3>Доп. услуги</h3>
+                        <ul class="price-list">
+                            <li>
+                                <span>Покраска волос</span>
+                                <span class="dots"></span>
+                                <span class="price">1000₽</span>
+                            </li>
+                            <li>
+                                <span>Горячий воск</span>
+                                <span class="dots"></span>
+                                <span class="price">50₽</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="price-value">1200₽</div>
-                </div>
-
-                <!-- Карточка 5 -->
-                <div class="price-card bg-color">
-                    <div class="price-info">
-                        <h3>Покраска волос</h3>
-                        <p>Тонирование, камуфляж</p>
-                    </div>
-                    <div class="price-value">1000₽</div>
-                </div>
-
-                <!-- Карточка 6 -->
-                <div class="price-card bg-beard-color">
-                    <div class="price-info">
-                        <h3>Тонирование бороды</h3>
-                        <p>Устранение седины</p>
-                    </div>
-                    <div class="price-value">500₽</div>
-                </div>
-
-                <!-- Карточка 7 -->
-                <div class="price-card bg-wax">
-                    <div class="price-info">
-                        <h3>Горячий воск</h3>
-                        <p>Удаление волос (зона)</p>
-                    </div>
-                    <div class="price-value">50₽</div>
                 </div>
 
             </div>
