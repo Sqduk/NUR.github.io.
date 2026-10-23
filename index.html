@@ -207,14 +207,31 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
-            font-size: 2rem;
-            color: var(--text-main);
             transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Стили для локальных иконок */
+        .icon-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Трюк, чтобы черный фон картинки слился с фоном круга */
+            mix-blend-mode: screen; 
+            transform: scale(1.2); /* Немного увеличиваем */
+            transition: transform 0.3s ease;
         }
 
         .service-circle:hover .icon-circle {
             background-color: var(--accent-red);
             transform: translateY(-5px);
+            border-color: var(--accent-hover);
+        }
+        
+        .service-circle:hover .icon-circle img {
+             mix-blend-mode: normal; 
+             transform: scale(1.1);
         }
 
         .service-circle h3 {
@@ -263,7 +280,7 @@
 
         .services-cards-grid {
             display: grid;
-            grid-template-columns: 1fr; /* 1 колонка на телефонах */
+            grid-template-columns: 1fr;
             gap: 30px;
         }
 
@@ -315,7 +332,7 @@
 
         .price-list {
             list-style: none;
-            margin-top: auto; /* Прижимает список к низу */
+            margin-top: auto;
         }
 
         .price-list li {
@@ -454,7 +471,6 @@
                 flex-direction: row;
             }
             
-            /* 2 колонки на планшетах */
             .services-cards-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -480,7 +496,6 @@
             }
         }
 
-        /* 3 КОЛОНКИ НА ДЕСКТОПЕ (ДЛЯ 7 КАРТОЧЕК) */
         @media (min-width: 1024px) {
             .services-cards-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -488,7 +503,7 @@
             
             /* Центрируем 7-ю карточку (Горячий воск) */
             .service-card-ref:last-child {
-                grid-column: 2 / 3; /* Ставим во вторую колонку (по центру) */
+                grid-column: 2 / 3; 
             }
         }
     </style>
@@ -525,30 +540,51 @@
         </div>
     </section>
 
-    <!-- БЛОК С КРУГЛЫМИ ИКОНКАМИ -->
+    <!-- БЛОК С КРУГЛЫМИ ИКОНКАМИ (ВАШИ ЛОКАЛЬНЫЕ ФОТО) -->
     <section class="services-nav" id="services">
         <div class="container">
             <div class="services-grid">
+                
+                <!-- Стрижки -->
                 <div class="service-circle">
-                    <div class="icon-circle">✂</div>
+                    <div class="icon-circle">
+                        <img src="images/icon-haircut.png" alt="Стрижки">
+                    </div>
                     <h3>Стрижки</h3>
                 </div>
+                
+                <!-- Борода -->
                 <div class="service-circle">
-                    <div class="icon-circle">👨</div>
+                    <div class="icon-circle">
+                        <img src="images/icon-beard.png" alt="Борода">
+                    </div>
                     <h3>Борода</h3>
                 </div>
+                
+                <!-- Комбо -->
                 <div class="service-circle">
-                    <div class="icon-circle">🔥</div>
+                    <div class="icon-circle">
+                        <img src="images/icon-combo.png" alt="Комбо">
+                    </div>
                     <h3>Комбо</h3>
                 </div>
+                
+                <!-- Детям -->
                 <div class="service-circle">
-                    <div class="icon-circle">🧒</div>
+                    <div class="icon-circle">
+                        <img src="images/icon-kids.png" alt="Детям">
+                    </div>
                     <h3>Детям</h3>
                 </div>
+                
+                <!-- Покраска -->
                 <div class="service-circle">
-                    <div class="icon-circle">🎨</div>
+                    <div class="icon-circle">
+                        <img src="images/icon-color.png" alt="Покраска">
+                    </div>
                     <h3>Покраска</h3>
                 </div>
+                
             </div>
         </div>
     </section>
@@ -573,11 +609,7 @@
                     <div class="service-content">
                         <h3>Мужская стрижка</h3>
                         <ul class="price-list">
-                            <li>
-                                <span>Классика, фейд</span>
-                                <span class="dots"></span>
-                                <span class="price">750₽</span>
-                            </li>
+                            <li><span>Классика, фейд</span><span class="dots"></span><span class="price">750₽</span></li>
                         </ul>
                     </div>
                 </div>
@@ -588,11 +620,7 @@
                     <div class="service-content">
                         <h3>Стрижка до 5 лет</h3>
                         <ul class="price-list">
-                            <li>
-                                <span>Для самых маленьких</span>
-                                <span class="dots"></span>
-                                <span class="price">600₽</span>
-                            </li>
+                            <li><span>Для самых маленьких</span><span class="dots"></span><span class="price">600₽</span></li>
                         </ul>
                     </div>
                 </div>
@@ -603,11 +631,7 @@
                     <div class="service-content">
                         <h3>Оформление бороды</h3>
                         <ul class="price-list">
-                            <li>
-                                <span>Контуры, тримминг</span>
-                                <span class="dots"></span>
-                                <span class="price">500₽</span>
-                            </li>
+                            <li><span>Контуры, тримминг</span><span class="dots"></span><span class="price">500₽</span></li>
                         </ul>
                     </div>
                 </div>
@@ -618,11 +642,7 @@
                     <div class="service-content">
                         <h3>Комбо</h3>
                         <ul class="price-list">
-                            <li>
-                                <span>Стрижка + Борода</span>
-                                <span class="dots"></span>
-                                <span class="price">1200₽</span>
-                            </li>
+                            <li><span>Стрижка + Борода</span><span class="dots"></span><span class="price">1200₽</span></li>
                         </ul>
                     </div>
                 </div>
@@ -633,11 +653,7 @@
                     <div class="service-content">
                         <h3>Покраска волос</h3>
                         <ul class="price-list">
-                            <li>
-                                <span>Тонирование, камуфляж</span>
-                                <span class="dots"></span>
-                                <span class="price">1000₽</span>
-                            </li>
+                            <li><span>Тонирование, камуфляж</span><span class="dots"></span><span class="price">1000₽</span></li>
                         </ul>
                     </div>
                 </div>
@@ -648,11 +664,7 @@
                     <div class="service-content">
                         <h3>Тонирование бороды</h3>
                         <ul class="price-list">
-                            <li>
-                                <span>Устранение седины</span>
-                                <span class="dots"></span>
-                                <span class="price">500₽</span>
-                            </li>
+                            <li><span>Устранение седины</span><span class="dots"></span><span class="price">500₽</span></li>
                         </ul>
                     </div>
                 </div>
@@ -663,11 +675,7 @@
                     <div class="service-content">
                         <h3>Горячий воск</h3>
                         <ul class="price-list">
-                            <li>
-                                <span>Удаление волос</span>
-                                <span class="dots"></span>
-                                <span class="price">50₽</span>
-                            </li>
+                            <li><span>Удаление волос</span><span class="dots"></span><span class="price">50₽</span></li>
                         </ul>
                     </div>
                 </div>
