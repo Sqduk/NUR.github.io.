@@ -214,13 +214,11 @@
 
         /* СТИЛИ ДЛЯ ВАШИХ ЛОКАЛЬНЫХ ИКОНОК */
         .icon-circle img {
-            width: 100%;
+            width: 100%; /* Картинка заполняет весь круг */
             height: 100%;
-            object-fit: cover; 
-            /* Трюк: черный фон картинки сливается с темным фоном круга */
+            object-fit: cover; /* Сохраняет пропорции и обрезает лишнее */
+            /* Главный трюк: делает черный фон картинки прозрачным на темном фоне */
             mix-blend-mode: screen; 
-            /* Немного увеличиваем, чтобы края не выглядели обрезанными */
-            transform: scale(1.2);
             transition: transform 0.3s ease, filter 0.3s ease;
         }
 
@@ -231,7 +229,7 @@
         }
         
         .service-circle:hover .icon-circle img {
-             /* При наведении инвертируем цвета картинки в белый */
+             /* При наведении делаем картинку полностью белой для контраста с красным */
              filter: brightness(0) invert(1);
              mix-blend-mode: normal;
              transform: scale(1.1);
@@ -548,7 +546,7 @@
         <div class="container">
             <div class="services-grid">
                 
-                <!-- Стрижки (Ножницы) -->
+                <!-- Стрижки -->
                 <div class="service-circle">
                     <div class="icon-circle">
                         <img src="images/scissors.png" alt="Стрижки">
@@ -556,7 +554,7 @@
                     <h3>Стрижки</h3>
                 </div>
                 
-                <!-- Борода (Профиль) -->
+                <!-- Борода -->
                 <div class="service-circle">
                     <div class="icon-circle">
                         <img src="images/beard.png" alt="Борода">
@@ -564,7 +562,7 @@
                     <h3>Борода</h3>
                 </div>
                 
-                <!-- Комбо (Ножницы + Расческа) -->
+                <!-- Комбо -->
                 <div class="service-circle">
                     <div class="icon-circle">
                         <img src="images/combo.png" alt="Комбо">
@@ -572,7 +570,7 @@
                     <h3>Комбо</h3>
                 </div>
                 
-                <!-- Детям (Голова ребенка) -->
+                <!-- Детям -->
                 <div class="service-circle">
                     <div class="icon-circle">
                         <img src="images/kids.png" alt="Детям">
@@ -580,7 +578,7 @@
                     <h3>Детям</h3>
                 </div>
                 
-                <!-- Покраска (Кисточка) -->
+                <!-- Покраска -->
                 <div class="service-circle">
                     <div class="icon-circle">
                         <img src="images/brush.png" alt="Покраска">
