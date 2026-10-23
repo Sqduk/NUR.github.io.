@@ -20,7 +20,7 @@
 
         :root {
             --bg-dark: #0f0f0f;
-            --bg-card: #1c1c1c;
+            --bg-card: #1a1a1a;
             --text-main: #f2f2f2;
             --text-muted: #a0a0a0;
             --accent-red: #8b1c1c; 
@@ -66,7 +66,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
         }
 
         .logo {
@@ -224,7 +224,7 @@
             text-transform: uppercase;
         }
 
-        /* НОВЫЙ БЛОК ПРАЙС-ЛИСТА (КАК НА РЕФЕРЕНСЕ) */
+        /* БЛОК ПРАЙС-ЛИСТА (КАРТОЧКИ С ФОТО) */
         .pricing-section {
             padding: 80px 0;
             background-color: var(--bg-dark);
@@ -267,16 +267,26 @@
             gap: 30px;
         }
 
+        /* Сама карточка */
         .service-card-ref {
             display: flex;
             flex-direction: column;
             border-radius: 12px;
             overflow: hidden;
             background-color: var(--bg-card);
+            border: 1px solid #2a2a2a;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        .service-card-ref:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            border-color: var(--accent-red);
+        }
+
+        /* Чистое, большое фото без затемнений */
         .service-image {
-            height: 250px;
+            height: 240px;
             width: 100%;
             background-size: cover;
             background-position: center;
@@ -284,25 +294,21 @@
         }
 
         .service-card-ref:hover .service-image {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
+        /* Тёмная подложка под текстом */
         .service-content {
-            padding: 30px;
+            padding: 25px 30px 30px;
             flex-grow: 1;
             background-color: var(--bg-card);
-            /* Легкий градиент для объема, как на референсе */
-            background: linear-gradient(180deg, #222 0%, #1a1a1a 100%);
-            border: 1px solid #2a2a2a;
-            border-top: none;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
         }
 
         .service-content h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
             font-family: var(--font-heading);
+            color: var(--text-main);
         }
 
         .price-list {
@@ -313,7 +319,7 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-size: 0.95rem;
         }
 
@@ -321,11 +327,10 @@
             margin-bottom: 0;
         }
 
-        /* Пунктирная линия между названием и ценой */
         .price-list li .dots {
             flex-grow: 1;
             border-bottom: 1px dotted #555;
-            margin: 0 10px;
+            margin: 0 15px;
             position: relative;
             top: -4px;
         }
@@ -443,7 +448,6 @@
                 flex-direction: row;
             }
             
-            /* Сетка для карточек услуг */
             .services-cards-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -536,7 +540,7 @@
         </div>
     </section>
 
-    <!-- НОВЫЙ БЛОК С ЦЕНАМИ (КАК НА РЕФЕРЕНСЕ) -->
+    <!-- БЛОК С ЦЕНАМИ -->
     <section class="pricing-section" id="pricing">
         <div class="container">
             
