@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUR — Мужские стрижки</title>
+    <meta name="description" content="NUR — барбершоп для тех, кто ценит простоту и качество. Стрижки, оформление бороды, комбо-услуги.">
+    
+    <!-- Подключаем шрифты от Google: Playfair Display (для заголовков, с засечками) и Montserrat (для текста) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* СБРОС СТИЛЕЙ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --text-main: #f2f2f2;
+            --text-muted: #a0a0a0;
+            --accent-red: #8b1c1c; /* Тот самый цвет ковра */
+            --accent-hover: #b32424;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ОБЩИЕ КЛАССЫ */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-red);
+            margin: 15px auto 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ШАПКА */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .logo span {
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .nav-links {
+            display: none; /* Скрыто на мобильных */
+        }
+
+        .header-btn {
+            display: none;
+        }
+
+        /* ПЕРВЫЙ ЭКРАН (HERO) */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            /* ЗАМЕНИТЕ ССЫЛКУ НИЖЕ НА ВАШЕ ФОТО САЛОНА */
+            background: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 15, 0.7); /* Затемнение фото */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .hero-logo-mock {
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-red);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .btn-outline:hover {
+            background-color: #fff;
+            color: var(--bg-dark);
+        }
+
+        /* УСЛУГИ (КРУГЛЫЕ ИКОНКИ) */
+        .services-nav {
+            padding: 60px 0;
+            background-color: var(--bg-card);
+        }
+
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .service-circle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 120px;
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--bg-dark);
+            border: 2px solid var(--accent-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 2rem;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .service-circle:hover .icon-circle {
+            background-color: var(--accent-red);
+            transform: translateY(-5px);
+        }
+
+        .service-circle h3 {
+            font-size: 0.9rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        /* ПРАЙС-ЛИСТ (КАРТОЧКИ) */
+        .pricing {
+            padding: 80px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .price-card {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-left: 4px solid var(--accent-red);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .price-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .price-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .price-value {
+            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            color: var(--accent-red);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* О НАС / ПРЕИМУЩЕСТВА */
+        .about {
+            padding: 80px 0;
+            background-color: var(--bg-card);
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .about-features {
+            list-style: none;
+        }
+        
+        .about-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .about-features li::before {
+            content: '—';
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        /* ПОДВАЛ */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+
+        .footer-contacts {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-contacts a {
+            font-size: 1.2rem;
+            font-family: var(--font-heading);
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+
+        .footer-contacts a:hover {
+            color: var(--accent-red);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 20px;
+        }
+
+        /* АДАПТИВ (ПЛАНШЕТЫ И ДЕСКТОП) */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 30px;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+            .nav-links a:hover {
+                color: var(--accent-red);
+            }
+            .header-btn {
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
+            .hero h1 {
+                font-size: 5rem;
+            }
+            .hero-buttons {
+                flex-direction: row;
+            }
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-content {
+                flex-direction: row;
+                align-items: center;
+            }
+            .about-text {
+                flex: 1;
+            }
+            .about-image {
+                flex: 1;
+                /* ЗАМЕНИТЕ ССЫЛКУ НА ФОТО РАБОТЫ */
+                background: url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+                height: 500px;
+                border-radius: 5px;
+            }
+            .footer-contacts {
+                flex-direction: row;
+                justify-content: center;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="logo">
+                <!-- ТУТ БУДЕТ ВАШ ЛОГОТИП (картинка). Пока текст. -->
+                NUR
+                <span>Мужские стрижки</span>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#services">Услуги</a>
+                <a href="#pricing">Цены</a>
+                <a href="#about">О нас</a>
+            </nav>
+
+            <!-- ССЫЛКА НА ВАШ ТЕЛЕГРАМ ДЛЯ ЗАПИСИ -->
+            <a href="https://t.me/NUR_Ab1" target="_blank" class="btn btn-outline header-btn">Записаться</a>
+        </div>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Больше<br>чем стрижки</h1>
+            <p>NUR — для тех, кто ценит простоту и качество. Профессиональный уход в атмосфере мужского клуба.</p>
+            <div class="hero-buttons">
+                <a href="https://t.me/NUR_Ab1" target="_blank" class="btn btn-primary">Записаться онлайн</a>
+                <a href="#pricing" class="btn btn-outline">Посмотреть цены</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК С КРУГЛЫМИ ИКОНКАМИ -->
+    <section class="services-nav" id="services">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-circle">
+                    <div class="icon-circle">✂</div>
+                    <h3>Стрижки</h3>
+                </div>
+                <div class="service-circle">
+                    <div class="icon-circle">👨</div>
+                    <h3>Борода</h3>
+                </div>
+                <div class="service-circle">
+                    <div class="icon-circle">🔥</div>
+                    <h3>Комбо</h3>
+                </div>
+                <div class="service-circle">
+                    <div class="icon-circle">🧒</div>
+                    <h3>Детям</h3>
+                </div>
+                <div class="service-circle">
+                    <div class="icon-circle">🎨</div>
+                    <h3>Покраска</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК С ЦЕНАМИ -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="pricing-grid">
+                
+                <!-- Карточка 1 -->
+                <div class="price-card">
+                    <div class="price-info">
+                        <h3>Мужская стрижка</h3>
+                        <p>Классика, фейд, тенниска</p>
+                    </div>
+                    <div class="price-value">750₽</div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="price-card">
+                    <div class="price-info">
+                        <h3>Стрижка до 5 лет</h3>
+                        <p>Для самых маленьких</p>
+                    </div>
+                    <div class="price-value">600₽</div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="price-card">
+                    <div class="price-info">
+                        <h3>Оформление бороды</h3>
+                        <p>Контуры, тримминг, уход</p>
+                    </div>
+                    <div class="price-value">500₽</div>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="price-card">
+                    <div class="price-info">
+                        <h3>Комбо (Стрижка + Борода)</h3>
+                        <p>Полный образ под ключ</p>
+                    </div>
+                    <div class="price-value">1200₽</div>
+                </div>
+
+                <!-- Карточка 5 -->
+                <div class="price-card">
+                    <div class="price-info">
+                        <h3>Покраска волос</h3>
+                        <p>Тонирование, камуфляж</p>
+                    </div>
+                    <div class="price-value">1000₽</div>
+                </div>
+
+                <!-- Карточка 6 -->
+                <div class="price-card">
+                    <div class="price-info">
+                        <h3>Тонирование бороды</h3>
+                        <p>Устранение седины</p>
+                    </div>
+                    <div class="price-value">500₽</div>
+                </div>
+
+                <!-- Карточка 7 -->
+                <div class="price-card">
+                    <div class="price-info">
+                        <h3>Горячий воск</h3>
+                        <p>Удаление волос (зона)</p>
+                    </div>
+                    <div class="price-value">50₽</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК О НАС -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Атмосфера NUR</h2>
+                    <p>Мы создали место, где каждый мужчина может расслабиться, отдохнуть от городской суеты и получить качественный уход.</p>
+                    <ul class="about-features">
+                        <li>Опытные барберы</li>
+                        <li>Индивидуальный подход</li>
+                        <li>Премиальная косметика</li>
+                        <li>Уютная атмосфера</li>
+                    </ul>
+                </div>
+                <!-- Заглушка для фото, в CSS прописано фоновое изображение -->
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 30px;">
+                NUR
+                <span>Мужские стрижки</span>
+            </div>
+            
+            <div class="footer-contacts">
+                <!-- ЗАМЕНИТЕ НА ВАШ АДРЕС И ТЕЛЕФОН -->
+                <a href="tel:+70000000000">+7 (000) 000-00-00</a>
+                <a href="https://t.me/NUR_Ab1" target="_blank">Написать в Telegram</a>
+            </div>
+            
+            <p class="copyright">&copy; 2024 NUR Barber. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
